@@ -1,0 +1,24 @@
+<%= render "login" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %> |
+<%= link_to 'Delete', user_path(@user),
+                      method: :delete,
+                      data: { confirm: "Are you sure?" } %>
+
+<h2>Your Pirates:</h2>
+<ul>
+  <% @pirates.each do |pirate| %>
+    <li>
+      <%= link_to pirate.name, pirate %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Create a new pirate:</h2>
+<%= render 'pirates/form' %>
