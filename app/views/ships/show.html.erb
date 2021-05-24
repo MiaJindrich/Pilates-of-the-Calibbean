@@ -1,0 +1,16 @@
+<h1><%= @ship.name %></h1>
+
+<p>
+  <strong>Capacity:</strong>
+  <%= @ship.capacity %>
+</p>
+
+<p>
+  <strong>Docked in:</strong>
+  <% if @ship.docked %>
+    Port Name
+  <% else %>
+    Ship is not docked
+  <% end %>
+</p>
+

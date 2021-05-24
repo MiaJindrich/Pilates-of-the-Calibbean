@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   root "users#home"
 
-  resources :users, shallow: true do
+  resources :users do
     resources :pirates
+    resources :ships
   end
   resources :sessions, only: [:new, :create, :destroy]
 

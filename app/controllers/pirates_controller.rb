@@ -3,6 +3,9 @@ class PiratesController < ApplicationController
   def show
     @pirate = Pirate.find(params[:id])
     @user = User.find(@pirate.user_id)
+    if @pirate.ship_id != nil
+      @ship = Ship.find(@pirate.ship_id)
+    end
   end
 
   def create

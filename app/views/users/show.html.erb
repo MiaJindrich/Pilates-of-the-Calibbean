@@ -1,9 +1,8 @@
 <%= render "login" %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<h1>
+  Name: <%= @user.name %>
+</h1>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %> |
@@ -15,7 +14,7 @@
 <ul>
   <% @pirates.each do |pirate| %>
     <li>
-      <%= link_to pirate.name, pirate %>
+      <%= link_to pirate.name, user_pirate_path(@user, pirate) %>
     </li>
   <% end %>
 </ul>

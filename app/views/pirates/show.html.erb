@@ -1,5 +1,36 @@
 <%= render "users/login" %>
 
-<%= render @user.pirates %>
+<h1><%= @pirate.name %></h1>
+
+<p>
+  <strong>Gold:</strong>
+  <%= @pirate.gold %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @pirate.status %>
+</p>
+
+<p>
+  <strong>Prestige:</strong>
+  <%= @pirate.prestige %>
+</p>
+
+<p>
+  <strong>Ship:</strong>
+  <% if @pirate.ship_id == nil %>
+    This pirate is walking by foot.
+  <strong><%= link_to 'Onboard!', user_ships_path %></strong>
+  <% else %>
+    <%= @pirate.name %> is on the ship <%= @ship.name %>.
+  <% end %>
+</p>
+
+<%= link_to "Delete", user_pirate_path(@user, @pirate),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
+
 
 <p><%= link_to 'Back', user_path(@user) %></p>
+

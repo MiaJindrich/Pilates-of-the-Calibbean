@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_21_183033) do
+ActiveRecord::Schema.define(version: 2021_05_23_181532) do
 
   create_table "pirates", force: :cascade do |t|
     t.string "name"
@@ -18,9 +18,20 @@ ActiveRecord::Schema.define(version: 2021_05_21_183033) do
     t.string "status", default: "commoner"
     t.integer "prestige", default: 0
     t.integer "user_id", null: false
+    t.integer "ship_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["ship_id"], name: "index_pirates_on_ship_id"
     t.index ["user_id"], name: "index_pirates_on_user_id"
+  end
+
+  create_table "ships", force: :cascade do |t|
+    t.string "name"
+    t.integer "capacity"
+    t.boolean "docked", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_ships_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -31,5 +42,6 @@ ActiveRecord::Schema.define(version: 2021_05_21_183033) do
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 
+  add_foreign_key "pirates", "ships"
   add_foreign_key "pirates", "users"
 end
