@@ -1,0 +1,17 @@
+<%= render "users/login" %>
+
+<h2>Houses for sale:</h2>
+
+<ul>
+  <% @houses.each do |house| %>
+    <li>
+      <strong>House no. <%= house.id %></strong>
+      Price: <%= house.price %>
+      Prestige: <%= house.prestige %>
+      <%= link_to 'Buy' %>
+    </li>
+  <% end %>
+</ul>
+
+<p><%= link_to 'Show more houses for sale', user_pirate_houses_path, method: :post %></p>
+<p><%= link_to 'Back', user_pirate_path(@user, @pirate) %></p>

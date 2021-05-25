@@ -1,12 +1,17 @@
+<%= render "users/login" %>
+
 <h2>What ship would you like to board?</h2>
 
 <ul>
   <% @ships.each do |ship| %>
     <li>
-      <%= link_to ship.name, user_ships_path %>
-      0/<%= ship.capacity %>
+      <strong><%= link_to ship.name, user_pirate_ship_path(@user, @pirate, ship) %></strong>
+      occupied:
+      <%= @pirates.select { |p| p.ship_id == ship.id }.count %>
+      / <%= ship.capacity %>
     </li>
   <% end %>
 </ul>
 
-<%= link_to 'Create a new ship', new_user_ship_path %>
+<p><%= link_to 'Create a new ship', new_user_pirate_ship_path %></p>
+<p><%= link_to 'Back', user_pirate_path(@user, @pirate) %></p>

@@ -1,3 +1,5 @@
+<%= render "users/login" %>
+
 <h1><%= @ship.name %></h1>
 
 <p>
@@ -6,11 +8,42 @@
 </p>
 
 <p>
+  <strong>Vacant places:</strong>
+  <%= @ship.capacity - @pirates.select { |p| p.ship_id == @ship.id }.count %>
+</p>
+
+<p>
   <strong>Docked in:</strong>
-  <% if @ship.docked %>
-    Port Name
+  <% if @ship.port_id != nil %>
+    <%= link_to "Port " + @port.name, user_pirate_ship_port_path(@user, @pirate, @ship, @port) %>
   <% else %>
     Ship is not docked
+    <strong><%= link_to "Dock ship!", user_pirate_ship_ports_path(@user, @pirate, @ship) %></strong>
   <% end %>
+</p>
+
+<p>
+  <% if @pirate.ship_id == nil %>
+
+    <% if (@pirates.select { |p| p.ship_id == @ship.id }.count) < @ship.capacity %>
+      <%= link_to "Board!",onboard_url(@user, @pirate, @ship), method: :put %>
+     <% else %>
+      This ship is already full.
+    <% end %>
+
+  <% else %>
+    <%= link_to "Unboard!",unboard_url(@user, @pirate), method: :put %>
+  <% end %>
+</p>
+
+<p>
+<%= link_to "Sink dat ship! Yeah, it'sa good idea!",
+            user_pirate_ship_path(@user, @pirate, @ship),
+            method: :delete,
+            data: { confirm: "You really wanna sink this ship?" } %>
+</p>
+
+<p>
+  <%= link_to "Back", user_pirate_ships_path(@user, @pirate) %>
 </p>
 

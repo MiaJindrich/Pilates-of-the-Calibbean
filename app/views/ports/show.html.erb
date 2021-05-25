@@ -1,0 +1,39 @@
+<%= render "users/login" %>
+
+<h1><%= "Port " + @port.name %></h1>
+
+<p>
+  <strong>Docks:</strong>
+  <%= @port.docks %>
+</p>
+
+<p>
+  <strong>Vacant places:</strong>
+  <%= @port.docks - @ships.select { |s| s.port_id == @port.id }.count %>
+</p>
+
+<p>
+  <% if @ship.port_id == nil %>
+
+    <% if (@ships.select { |s| s.port_id == @port.id }.count) < @port.docks %>
+      <%= link_to "Dock ship!",dock_url(@user, @pirate, @ship, @port), method: :put %>
+    <% else %>
+      This port has all docks occupied.
+    <% end %>
+
+    <% else if @ship.port_id == @port.id %>
+      <%= link_to "We sail to the sea!",undock_url(@user, @pirate, @ship), method: :put %>
+    <% end %>
+  <% end %>
+</p>
+
+<p>
+  <%= link_to "Let's destroy this place!",
+              user_pirate_ship_port_path(@user, @pirate, @ship, @port),
+              method: :delete,
+              data: { confirm: "You have your cannons with ya?" } %>
+</p>
+
+<p>
+  <%= link_to "Back", user_pirate_ship_ports_path(@user, @pirate, @ship) %>
+</p>

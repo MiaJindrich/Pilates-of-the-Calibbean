@@ -1,0 +1,17 @@
+<%= render "users/login" %>
+
+<h2>Choose port you would like to dock in</h2>
+
+<ul>
+  <% @ports.each do |port| %>
+    <li>
+      <strong><%= link_to 'Port ' + port.name, user_pirate_ship_port_path(@user, @pirate, @ship, port) %></strong>
+      occupied:
+      <%= @ships.select { |s| s.port_id == port.id }.count %>
+      / <%= port.docks %>
+    </li>
+  <% end %>
+</ul>
+
+<p><%= link_to 'Add more ports', new_user_pirate_ship_port_path %></p>
+<p><%= link_to 'Back', user_pirate_ship_path(@user, @pirate, @ship) %></p>

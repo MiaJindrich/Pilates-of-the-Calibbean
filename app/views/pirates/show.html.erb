@@ -21,15 +21,24 @@
   <strong>Ship:</strong>
   <% if @pirate.ship_id == nil %>
     This pirate is walking by foot.
-  <strong><%= link_to 'Onboard!', user_ships_path %></strong>
+  <strong><%= link_to 'Onboard!', user_pirate_ships_path(@user, @pirate) %></strong>
   <% else %>
-    <%= @pirate.name %> is on the ship <%= @ship.name %>.
+    <%= link_to @ship.name, user_pirate_ship_path(@user, @pirate, @ship) %>
+    <%= link_to "Unboard!",unboard_url(@user, @pirate), method: :put %>
   <% end %>
 </p>
 
-<%= link_to "Delete", user_pirate_path(@user, @pirate),
+<p>
+  <strong>Houses:</strong>
+  <%= @houses.select { |h| h.pirate_id == @pirate.id }.count %>
+  <%= link_to "Buy houses", user_pirate_houses_path(@user, @pirate) %>
+</p>
+
+<p>
+  <%= link_to "Delete", user_pirate_path(@user, @pirate),
             method: :delete,
             data: { confirm: "Are you sure?" } %>
+</p>
 
 
 <p><%= link_to 'Back', user_path(@user) %></p>

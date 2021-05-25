@@ -3,7 +3,7 @@ class CreateShips < ActiveRecord::Migration[6.1]
     create_table :ships do |t|
       t.string :name
       t.integer :capacity
-      t.boolean :docked, :default => false
+      t.references :port, null: true, foreign_key: true
 
       t.timestamps
     end

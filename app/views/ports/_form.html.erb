@@ -1,0 +1,19 @@
+<%= form_with url: user_pirate_ship_ports_path, model: port do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+    <% port.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :docks %><br>
+    <%= form.select :docks, [2, 3, 4, 5], selected: 2 %><br>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+<% end %>
