@@ -1,24 +1,25 @@
-# README
+# WELCOME TO PILATES OF THE CALIBBEAN
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This web application lets you register as a user, log in, create a pirate and do various actions
 
-Things you may want to cover:
+How to run this application:
+1. Make a copy of this repo
+2. Run migrations
+3. Run application
+4. Go to localhost
+5. Enjoy
 
-* Ruby version
+Properties:
 
-* System dependencies
+* Ruby version: '2.7.3'
 
-* Configuration
+* Rails version: '6.1.3'
 
-* Database creation
+* Database: sqlite3
 
-* Database initialization
+* Models: user, pirate, ship, port, house
 
-* How to run the test suite
+tips:
+If for any reason, you would get stuck with current_user error, it means your session wasn't deleted properly. Just run '/logout' and login as usual.
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
