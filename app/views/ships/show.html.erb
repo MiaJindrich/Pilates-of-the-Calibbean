@@ -26,7 +26,7 @@
   <% if @pirate.ship_id == nil %>
 
     <% if (@pirates.select { |p| p.ship_id == @ship.id }.count) < @ship.capacity %>
-      <%= link_to "Board!",onboard_url(@user, @pirate, @ship), method: :put %>
+      <strong><%= link_to "Board!",onboard_url(@user, @pirate, @ship), method: :put %></strong>
      <% else %>
       This ship is already full.
     <% end %>

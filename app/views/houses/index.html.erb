@@ -8,7 +8,7 @@
       <strong>House no. <%= house.id %></strong>
       Price: <%= house.price %>
       Prestige: <%= house.prestige %>
-      <%= link_to 'Buy' %>
+      <%= link_to 'Buy', buy_house_path(@user, @pirate, house), method: :post %>
     </li>
   <% end %>
 </ul>

@@ -21,5 +21,6 @@ Rails.application.routes.draw do
   put "users/:user_id/pirates/:pirate_id/ships/:ship_id/port/:id/dock", to: "ships#dock", as: "dock"
   put "users/:user_id/pirates/:pirate_id/ship/:id/undock", to: "ships#undock", as: "undock"
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  post "users/:user_id/pirates/:pirate_id/houses/:id", to: "pirates#buy_house", as: "buy_house"
+  post "users/:user_id/pirates/:id/plunder", to: "pirates#plunder", as: "plunder"
 end

@@ -24,7 +24,6 @@
   <strong><%= link_to 'Onboard!', user_pirate_ships_path(@user, @pirate) %></strong>
   <% else %>
     <%= link_to @ship.name, user_pirate_ship_path(@user, @pirate, @ship) %>
-    <%= link_to "Unboard!",unboard_url(@user, @pirate), method: :put %>
   <% end %>
 </p>
 
@@ -33,6 +32,10 @@
   <%= @houses.select { |h| h.pirate_id == @pirate.id }.count %>
   <%= link_to "Buy houses", user_pirate_houses_path(@user, @pirate) %>
 </p>
+
+<% if @pirate.ship_id != nil %>
+  <h3><%= link_to "Plunder! Hurray!", plunder_path(@user, @pirate), method: :post %></h3>
+<% end %>
 
 <p>
   <%= link_to "Delete", user_pirate_path(@user, @pirate),

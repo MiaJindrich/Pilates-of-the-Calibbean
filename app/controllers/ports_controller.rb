@@ -42,7 +42,7 @@ class PortsController < ApplicationController
     @ship = Ship.find(params[:ship_id])
     @port = Port.find(params[:id])
     @port.destroy
-    redirect_to index
+    redirect_to user_pirate_ship_ports_path
   end
 
   private
